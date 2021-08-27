@@ -1,0 +1,33 @@
+function DinLayerRever=StructureReSet(DinLayer)
+	DinLayerRever=DinLayer;
+	DinLayerRever.nUp=DinLayer.nDn;
+	DinLayerRever.nDn=DinLayer.nUp;
+    num_dl=DinLayer.num_dl;
+%     num_kx=DinLayer.num_kx;
+%     num_ky=DinLayer.num_ky;
+%     num_layer=DinLayer.num_layer;
+    nDn=DinLayer.nDn;
+%     kx_grid=DinLayer.kx_grid;
+%     ky_grid=DinLayer.ky_grid;
+    
+	for l=1:num_dl
+	DinLayerRever.dl(num_dl-l+1) = DinLayerRever.dl(l);
+	DinLayerRever.Eplist(num_dl-l+1) = DinLayerRever.Eplist(l);
+	end
+	DinLayerRever.POSD = DinLayer.dl(nDn+1) - DinLayer.dis;
+
+    DinLayerRever.kl = DinLayer.k0 * sqrt(DinLayer.Eplist);
+    DinLayer.ke=DinLayer.k0*sqrt(DinLayer.Eplist(DinLayer.num_layer));
+    
+
+	% The Z component of the wave vector
+    DinLayerRever.klz = zeros(DinLayer.num_kx, DinLayer.num_ky, DinLayer.num_layer);
+    DinLayerRever.theta = zeros(DinLayer.num_kx, DinLayer.num_ky, DinLayer.num_layer);
+    DinLayerRever.krho_grid=sqrt(DinLayer.kx_grid.^2+DinLayer.ky_grid.^2);
+    for l =1:DinLayerRever.num_layer
+        DinLayerRever.klz(:, :, l) = sqrt(DinLayer.kl(l).^2 - DinLayer.krho_grid.^2);
+        DinLayerRever.theta(:, :, l) = asin(DinLayer.krho_grid./DinLayer.kl(l));
+    end
+
+	DinLayerRever.thetaUp=DinLayerRever.theta(:,:,DinLayer.num_layer);
+end
