@@ -1,4 +1,6 @@
 # Dipole Far Field Pattern in Stratified Media
+An MATLAB version of dipole emission pattern in Multi-layered structure.
+
 To calculate the far field pattern of dipole in stratified media. As is shown blew,
 
 ![](https://raw.githubusercontent.com/knifelees3/my_pictures/master/picgoup/20200223215829792_1734.jpg)
@@ -32,3 +34,4 @@ The simulated far filed pattern for dx, dy, dz dipoles are as follows
 we could also plot the $\rho,\phi$ distributions here
 
 ![](./PatternDipoleonSubRhoPhiDistribution.png)
+
