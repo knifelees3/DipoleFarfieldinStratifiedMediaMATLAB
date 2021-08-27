@@ -12,7 +12,8 @@ nSub=1.4564;
 DinLayer.c = 3e8;
 DinLayer.WL0 = 655e-9;
 
-DinLayer.NA=nSub;
+%NA=1.4; %If this line has been commented, the NA will be corresponding
+%refractive index
 
 DinLayer.nUp = 1;
 DinLayer.nDn = 1;
@@ -46,6 +47,10 @@ DinLayer.Eplist = zeros(DinLayer.num_layer,1);
 DinLayer.Eplist(3) = 1;
 DinLayer.Eplist(2) = 1;
 DinLayer.Eplist(1) = nSub^2;
+
+if exist('NA','var') == 0
+DinLayer.NA=sqrt(DinLayer.Eplist(end));
+end
 
 DinLayer.num_kx = 100;
 DinLayer.num_ky = 100;
