@@ -35,3 +35,4 @@ we could also plot the $\rho,\phi$ distributions here
 
 ![](./PatternDipoleonSubRhoPhiDistribution.png)
 
+Some veriftications will be added soon
